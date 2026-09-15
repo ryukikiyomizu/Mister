@@ -1,0 +1,24 @@
+.vs/
+.idea/
+.worktrees/
+.superpowers/
+
+**/bin/
+**/obj/
+artifacts/
+TestResults/
+graphify-out/
+*.user
+*.suo
+*.part
+
+# User-supplied proprietary evidence and decoded output
+CLIENT.EXE
+Client_D.exe
+*.pak
+pakkey/
+private-fixtures/
+by_pack/
+merged/
+*.t2capture
+*.ttcapture

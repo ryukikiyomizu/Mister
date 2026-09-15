@@ -1,0 +1,130 @@
+<UserControl x:Class="Mister.App.Views.VcePlaybackView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Loaded="OnLoaded"
+             Unloaded="OnUnloaded">
+  <Grid Background="#080808">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <Viewbox x:Name="StageViewbox"
+             Margin="12"
+             ClipToBounds="True"
+             Stretch="Uniform"
+             StretchDirection="DownOnly">
+      <Border Background="Black"
+              BorderBrush="{StaticResource BorderBrush}"
+              BorderThickness="1">
+        <Canvas x:Name="AnimationCanvas"
+                Width="1280"
+                Height="768"
+                RenderTransformOrigin="0.5,0.5"
+                Background="Black"
+                ClipToBounds="True" />
+      </Border>
+    </Viewbox>
+
+    <Border Grid.Row="1"
+            Padding="14,12"
+            Background="{StaticResource SurfaceBrush}"
+            BorderBrush="{StaticResource BorderBrush}"
+            BorderThickness="0,1,0,0">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto" />
+          <RowDefinition Height="9" />
+          <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <Button x:Name="PlayPauseButton"
+                  MinWidth="82"
+                  Click="OnPlayPause"
+                  Content="Pause" />
+          <Button Grid.Column="1"
+                  Margin="8,0,0,0"
+                  Style="{StaticResource QuietButton}"
+                  Click="OnStop"
+                  Content="Restart" />
+          <Slider x:Name="FrameSlider"
+                  Grid.Column="3"
+                  Minimum="0"
+                  Maximum="1"
+                  VerticalAlignment="Center"
+                  ValueChanged="OnFrameChanged"
+                  PreviewMouseLeftButtonDown="OnSeekStarted"
+                  PreviewMouseLeftButtonUp="OnSeekCompleted" />
+          <TextBlock Grid.Column="5"
+                     VerticalAlignment="Center"
+                     FontFamily="Cascadia Mono, Consolas"
+                     FontSize="11"
+                     Foreground="{StaticResource TextSecondaryBrush}">
+            <Run Text="Frame " />
+            <Run x:Name="CurrentFrameText" Text="0" />
+            <Run Text=" / " />
+            <Run x:Name="MaximumFrameText" Text="0" />
+          </TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="2">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="8" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="14" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="8" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="14" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <TextBlock x:Name="AnimationStatusText"
+                     VerticalAlignment="Center"
+                     FontSize="12"
+                     Foreground="{StaticResource TextMutedBrush}" />
+          <TextBlock Grid.Column="1"
+                     VerticalAlignment="Center"
+                     FontSize="12"
+                     Foreground="{StaticResource TextMutedBrush}"
+                     Text="Speed" />
+          <ComboBox x:Name="SpeedPicker"
+                    Grid.Column="3"
+                    Width="82"
+                    SelectionChanged="OnSpeedChanged">
+            <ComboBoxItem Tag="0.5" Content="0.5×" />
+            <ComboBoxItem Tag="1" Content="1×" IsSelected="True" />
+            <ComboBoxItem Tag="2" Content="2×" />
+          </ComboBox>
+          <TextBlock Grid.Column="5"
+                     VerticalAlignment="Center"
+                     FontSize="12"
+                     Foreground="{StaticResource TextMutedBrush}"
+                     Text="Zoom" />
+          <ComboBox x:Name="ZoomPicker"
+                    Grid.Column="7"
+                    Width="82"
+                    SelectionChanged="OnZoomChanged">
+            <ComboBoxItem Tag="1" Content="100%" IsSelected="True" />
+            <ComboBoxItem Tag="1.5" Content="150%" />
+            <ComboBoxItem Tag="2" Content="200%" />
+          </ComboBox>
+          <CheckBox x:Name="LoopCheckBox"
+                    Grid.Column="9"
+                    VerticalAlignment="Center"
+                    IsChecked="True"
+                    Content="Loop" />
+        </Grid>
+      </Grid>
+    </Border>
+  </Grid>
+</UserControl>

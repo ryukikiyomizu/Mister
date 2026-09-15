@@ -1,0 +1,141 @@
+<UserControl x:Class="Mister.App.Views.MediaPlaybackView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vlc="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
+             Loaded="OnLoaded"
+             Unloaded="OnUnloaded"
+             IsVisibleChanged="OnIsVisibleChanged"
+             SizeChanged="OnViewSizeChanged">
+  <Grid Background="#111111">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <vlc:VideoView x:Name="VideoSurface" Grid.Row="0">
+      <!-- LibVLCSharp.WPF renders this content in a companion overlay window.
+           Only content that belongs over the video stays in this overlay. -->
+      <Grid x:Name="VideoOverlay" Background="#01000000">
+        <Border x:Name="MediaBackdrop"
+                Background="#111111">
+          <StackPanel x:Name="AudioPlaceholder"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+            <Border Width="78"
+                    Height="78"
+                    HorizontalAlignment="Center"
+                    Background="#2B2B2B"
+                    CornerRadius="39">
+              <TextBlock HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         FontFamily="Segoe UI Symbol"
+                         FontSize="32"
+                         Foreground="White"
+                         Text="♫" />
+            </Border>
+            <TextBlock Margin="0,16,0,0"
+                       HorizontalAlignment="Center"
+                       FontSize="17"
+                       FontWeight="SemiBold"
+                       Foreground="White"
+                       Text="Audio preview" />
+            <TextBlock x:Name="MediaNameText"
+                       Margin="0,6,0,0"
+                       MaxWidth="620"
+                       HorizontalAlignment="Center"
+                       TextAlignment="Center"
+                       TextTrimming="CharacterEllipsis"
+                       Foreground="#B7B7B7" />
+          </StackPanel>
+        </Border>
+      </Grid>
+    </vlc:VideoView>
+
+    <Border x:Name="PlaybackControls"
+            Grid.Row="1"
+            Padding="16,12"
+            Background="#FFFDFBF8"
+            BorderBrush="#FFD8D4CE"
+            BorderThickness="0,1,0,0">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="9" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="14" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Slider x:Name="PositionSlider"
+                      Height="28"
+                      MinWidth="240"
+                      Minimum="0"
+                      Maximum="1"
+                      IsMoveToPointEnabled="True"
+                      VerticalAlignment="Center"
+                      ToolTip="Seek through this audio or video"
+                      PreviewMouseLeftButtonDown="OnSeekStarted"
+                      PreviewMouseLeftButtonUp="OnSeekCompleted" />
+              <TextBlock Grid.Column="2"
+                         VerticalAlignment="Center"
+                         FontFamily="Cascadia Mono, Consolas"
+                         FontSize="11"
+                         Foreground="{StaticResource TextSecondaryBrush}">
+                <Run x:Name="ElapsedText" Text="00:00" />
+                <Run Text=" / " />
+                <Run x:Name="DurationText" Text="00:00" />
+              </TextBlock>
+            </Grid>
+
+            <Grid Grid.Row="2">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="8" />
+                <ColumnDefinition Width="104" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Button x:Name="PlayPauseButton"
+                      MinWidth="82"
+                      Click="OnPlayPause"
+                      Content="Play" />
+              <Button Grid.Column="1"
+                      Margin="8,0,0,0"
+                      Style="{StaticResource QuietButton}"
+                      Click="OnStop"
+                      Content="Stop" />
+              <TextBlock x:Name="PlaybackStatusText"
+                         Grid.Column="3"
+                         VerticalAlignment="Center"
+                         FontSize="12"
+                         Foreground="{StaticResource TextMutedBrush}"
+                         Text="Choose Play to begin." />
+              <TextBlock Grid.Column="4"
+                         VerticalAlignment="Center"
+                         FontSize="12"
+                         Foreground="{StaticResource TextMutedBrush}"
+                         Text="Volume" />
+              <Slider x:Name="VolumeSlider"
+                      Grid.Column="6"
+                      Minimum="0"
+                      Maximum="100"
+                      Value="80"
+                      ValueChanged="OnVolumeChanged" />
+              <CheckBox x:Name="LoopCheckBox"
+                        Grid.Column="8"
+                        VerticalAlignment="Center"
+                        IsChecked="True"
+                        Content="Loop" />
+            </Grid>
+          </Grid>
+    </Border>
+  </Grid>
+</UserControl>

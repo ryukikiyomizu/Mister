@@ -1,0 +1,18 @@
+Technika Tools third-party notices
+
+This distribution includes:
+
+LibVLCSharp.WPF 3.10.0
+Copyright (c) VideoLAN and LibVLCSharp contributors
+Licensed under LGPL-2.1-or-later
+Source: https://code.videolan.org/videolan/LibVLCSharp
+License: https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+
+VideoLAN.LibVLC.Windows 3.0.23.1
+Copyright (c) VideoLAN and VLC contributors
+Licensed under LGPL-2.1-or-later
+Source: https://code.videolan.org/videolan/vlc
+License: https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+
+These libraries provide the local audio and video preview engine. They are
+loaded dynamically from the application bundle. No game media is included.

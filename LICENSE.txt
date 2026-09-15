@@ -1,0 +1,9 @@
+Technika Tools source and binaries
+Copyright (c) 2026 Ryuki
+
+All rights reserved. No permission is granted to redistribute modified or
+unmodified copies without the copyright holder's written permission.
+
+DJMAX, TECHNIKA, and related game assets are the property of their respective
+owners. This project contains no proprietary game executables, keys, dongle
+material, archives, or decrypted assets.

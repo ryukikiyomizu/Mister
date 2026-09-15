@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>Mister</AssemblyName>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <VlcWindowsX64Enabled>true</VlcWindowsX64Enabled>
+    <VlcWindowsX86Enabled>false</VlcWindowsX86Enabled>
+    <VlcWindowsArm64Enabled>false</VlcWindowsArm64Enabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Mister.Core\Mister.Core.csproj" />
+    <ProjectReference Include="..\Mister.Windows\Mister.Windows.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="LibVLCSharp.WPF" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" />
+  </ItemGroup>
+  <ItemGroup>
+    <VlcWindowsX64IncludeFiles Include="libvlc.dll;libvlccore.dll;plugins\access\libfilesystem_plugin.dll;plugins\audio_filter\%252A%252A;plugins\audio_mixer\%252A%252A;plugins\audio_output\%252A%252A;plugins\codec\%252A%252A;plugins\d3d11\%252A%252A;plugins\d3d9\%252A%252A;plugins\demux\%252A%252A;plugins\logger\%252A%252A;plugins\meta_engine\%252A%252A;plugins\misc\%252A%252A;plugins\packetizer\%252A%252A;plugins\spu\%252A%252A;plugins\stream_filter\%252A%252A;plugins\text_renderer\%252A%252A;plugins\video_chroma\%252A%252A;plugins\video_filter\%252A%252A;plugins\video_output\%252A%252A" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Mister.App.Tests" />
+  </ItemGroup>
+</Project>

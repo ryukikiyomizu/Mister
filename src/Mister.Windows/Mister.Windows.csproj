@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Mister.Core\Mister.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Mister.Windows.Tests" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(ExcludeWindowsSandbox)' == 'true'">
+    <Compile Remove="Sandbox\**\*.cs" />
+  </ItemGroup>
+</Project>
